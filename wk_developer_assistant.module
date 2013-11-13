@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Wunderkraut Developer Assistant feature.
+ */
+
+include_once 'wk_developer_assistant.features.inc';
