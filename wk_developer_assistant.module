@@ -5,3 +5,11 @@
  */
 
 include_once 'wk_developer_assistant.features.inc';
+
+/**
+ * Implements hook_init().
+ */
+function wk_developer_assistant_init() {
+  error_reporting(E_ALL);
+  ini_set("display_errors", 1);
+}
