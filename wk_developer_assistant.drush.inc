@@ -20,7 +20,7 @@ function wk_developer_assistant_drush_command() {
  */
 function drush_wk_developer_assistant_developer_environment() {
   $uis = array('ds_ui', 'field_ui', 'views_ui');
-  $helpers = array('coffee', 'module_filter', 'stage_file_proxy', 'imagecache_defaults', 'admin_language');
+  $helpers = array('coffee', 'module_filter', 'stage_file_proxy', 'imagecache_defaults', 'admin_language', 'environment_indicator');
   $devtools = array('devel', 'maildebugger', 'krumo', 'search_krumo');
 
   drush_log('Enabling developer UI\'s...', 'ok');
@@ -81,6 +81,14 @@ function drush_wk_developer_assistant_developer_environment() {
 
   drush_log('Configure imagecache defaults...', 'ok');
   variable_set('imagecache_defaults_default_image_style', 'imagecache_defaults_prepare_default_image');
+
+  // Enable environment indicator module as long it is not configured for this instance.
+  $environment_indicator = variable_get('environment_indicator_overwrite', 'not configured');
+  if ($environment_indicator == 'not configured') {
+    drush_log('Enable environment indicator...', 'ok');
+    variable_set('environment_indicator_overwrite', TRUE);
+    variable_set('environment_indicator_overwritten_name', 'Local Dev Environment');
+  }
 
   drush_log('Generating one-time login link for lazy devs...', 'ok');
   drush_invoke_process('@self', 'uli');
