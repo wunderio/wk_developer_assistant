@@ -90,6 +90,9 @@ function drush_wk_developer_assistant_developer_environment() {
     variable_set('environment_indicator_overwritten_name', 'Local Dev Environment');
   }
 
+  drush_log('Set image toolkit to GD2...', 'ok');
+  variable_set('image_toolkit', 'gd');
+
   drush_log('Generating one-time login link for lazy devs...', 'ok');
   drush_invoke_process('@self', 'uli');
 }
