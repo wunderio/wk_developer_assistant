@@ -1,14 +1,6 @@
 name = Wunderkraut Developer Assistant
 core = 7.x
 package = Developer
-php = 5.2.4
-dependencies[] = devel
-dependencies[] = environment_indicator
 dependencies[] = features
-dependencies[] = imagecache_defaults
-dependencies[] = strongarm
-features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[user_permission][] = access devel information
-features[variable][] = imagecache_defaults_default_image_style
-features[variable][] = panels_hash_cache_disabled
