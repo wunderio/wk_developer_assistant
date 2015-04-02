@@ -20,7 +20,7 @@ function wk_developer_assistant_drush_command() {
  */
 function drush_wk_developer_assistant_developer_environment() {
   $uis = array('ds_ui', 'field_ui', 'views_ui');
-  $helpers = array('coffee', 'module_filter', 'stage_file_proxy', 'imagecache_defaults', 'admin_language', 'environment_indicator');
+  $helpers = array('coffee', 'module_filter', 'stage_file_proxy', 'admin_language', 'environment_indicator');
   $devtools = array('devel', 'maildebugger', 'krumo', 'search_krumo');
 
   drush_log('Enabling developer UI\'s...', 'ok');
@@ -92,6 +92,11 @@ function drush_wk_developer_assistant_developer_environment() {
 
   drush_log('Set image toolkit to GD2...', 'ok');
   variable_set('image_toolkit', 'gd');
+
+  if (module_exists('cdn')) {
+    drush_log('Disable CDN...', 'ok');
+    variable_set('cdn_status', 0);
+  }
 
   drush_log('Generating one-time login link for lazy devs...', 'ok');
   drush_invoke_process('@self', 'uli');
